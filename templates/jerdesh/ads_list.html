@@ -1,0 +1,128 @@
+{% extends 'jerdesh/base.html' %}
+
+{% block title %}Список объявлений - {{ block.super }} {% endblock %}
+
+{% block content %}
+<!-- job_listing_area_start  -->
+<div class="job_listing_area plus_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="job_filter white-bg">
+                    <div class="form_inner white-bg">
+                        <h3>Фильтр</h3>
+                        <form action="{% url 'jerdesh:ads_list_url' %}">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <input type="text" placeholder="Ключевое слово" name="search">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <select class="wide" name='location'>
+                                            <option data-display="Местоположение">Местоположение</option>
+                                            {% for city in cities %}
+                                                <option value="{{ city }}">{{ city }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <select class="wide" name="category">
+                                            <option data-display="Категории">Категории</option>
+                                            {% for category in categories %}
+                                                <option value="{{ category }}">{{ category }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-12">
+                                    <div class="job_btn">
+                                        <button type="submit" class="btn btn-success">Искать</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="recent_joblist_wrap">
+                    <div class="recent_joblist white-bg ">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h4>Список вакансий</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="serch_cat d-flex justify-content-end">
+                                    <select>
+                                        <option data-display="По убыванию">По убыванию</option>
+                                        <option value="1">По возрастанию</option>
+                                        <option value="2">По цене </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job_lists m-0">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            {% for ad in ads.object_list %}
+                                <div class="single_jobs white-bg d-flex justify-content-between">
+                                    <div class="jobs_left d-flex align-items-center">
+                                        <div class="jobs_conetent">
+                                            <a href="{{ ad.get_absolute_url }}"><h4>{{ ad.ad_title }}</h4></a>
+                                            <div class="links_locat d-flex align-items-center">
+                                                <div class="location">
+                                                    <p> <i class="fa fa-map-marker"></i>{{ ad.city }}</p>
+                                                </div>
+                                                <div class="location">
+                                                    <p> <i class="fa fa-clock-o"></i> Частичная занятость</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="jobs_right">
+                                        <div class="apply_now">
+                                            <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
+                                            <a href="job_details.html" class="boxed-btn3">Купить</a>
+                                        </div>
+                                        <div class="date">
+                                            <p>{{ ad.pub_date }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pagination_wrap">
+                                <ul>
+                                    <li><a href="{{ prev_url }}"> <i class="ti-angle-left"></i> </a></li>
+    
+                                    {% for n in ads.paginator.page_range %}
+                                        {% if ads.number == n %}
+                                          <li><a href="?page={{ n }}" style="border: 1px solid green;"><span>{{ n }}</span></a></li>
+
+                                        {% elif n > ads.number|add:-3 and n < ads.number|add:3 %}
+                                        <li><a href="?page={{ n }}"><span>{{ n }}</span></a></li>
+
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <li><a href="{{ next_url }}"> <i class="ti-angle-right"></i> </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

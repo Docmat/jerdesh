@@ -1,0 +1,36 @@
+{% extends 'jerdesh/base.html' %}
+{% load static %}
+
+{% block content %}
+
+	<div class="page-content">
+        <div class="form-v6-content">
+            <div class="form-left">
+                <img src="{% static 'users/images/form-v6.jpg' %}" alt="form">
+            </div>
+            <form class="form-detail" action="#" method="post">
+                {% csrf_token %}
+                <h2>Регистрация</h2>
+                <div class="form-row">
+                    {{ registration_form.username }}
+                </div>
+                <div class="form-row">
+                    {{ registration_form.email }}
+                </div>
+                <div class="form-row">
+                    {{ registration_form.password1 }}
+                </div>
+                <div class="form-row">
+                    {{ registration_form.password2 }}
+                </div>
+                {% for error in registration_form.errors %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+                <div class="form-row-last">
+                    <input type="submit" name="register" class="register" value="Регистрация">
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

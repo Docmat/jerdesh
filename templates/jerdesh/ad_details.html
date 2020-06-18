@@ -1,0 +1,95 @@
+{% extends 'jerdesh/base.html' %}
+
+{% block title %} {{ ad.ad_title }} - {{ block.super }} {% endblock %}
+
+
+{% block content %}
+<div class="job_details_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="job_details_header">
+                    <div class="single_jobs white-bg d-flex justify-content-between">
+                        <div class="jobs_left d-flex align-items-center">
+                            <div class="thumb">
+                                <img src="{{ ad.img.url }}" alt="" width="60" height="60">
+                            </div>
+                            <div class="jobs_conetent">
+                                <a href="#"><h4>{{ ad.ad_title }}</h4></a>
+                                <div class="links_locat d-flex align-items-center">
+                                    <div class="location">
+                                        <p> <i class="fa fa-map-marker"></i>{{ ad.city }}</p>
+                                    </div>
+                                    <div class="location">
+                                        <p> <i class="fa fa-clock-o"></i> Частичная занятость</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jobs_right">
+                            <div class="apply_now">
+                                <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="descript_wrap white-bg" style="word-wrap: break-word">
+                    <div class="single_wrap">
+                        <h4>Описание</h4>
+                        <p>{{ ad.ad_text }}</p>
+                    </div>
+                </div>
+                <div class="apply_job_form white-bg">
+                    <h4>Оставить комментарий</h4>
+                    <form action="#">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input_field">
+                                    <input type="text" placeholder="Ваше имя">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input_field">
+                                    <input type="text" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input_field">
+                                    <textarea name="#" id="" cols="30" rows="10" placeholder="Текст комментария"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="submit_btn">
+                                    <button class="boxed-btn3 w-100" type="submit">Оставить комментарий</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="job_sumary">
+                    <div class="summery_header">
+                        <h3>Работа на лето</h3>
+                    </div>
+                    <div class="job_content">
+                        <ul>
+                            <li>Дата публикации: <span>{{ ad.pub_date }}</span></li>
+                            <li>Местоположение: <span>{{ ad.city }}</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="share_wrap d-flex">
+                    <span>Поделиться:</span>
+                    <ul>
+                        <li><a href="#"> <i class="fa fa-facebook"></i></a> </li>
+                        <li><a href="#"> <i class="fa fa-google-plus"></i></a> </li>
+                        <li><a href="#"> <i class="fa fa-twitter"></i></a> </li>
+                        <li><a href="#"> <i class="fa fa-envelope"></i></a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'jerdesh/base.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static 'jerdesh/crud/css/main.css' %}">
+	<!--===============================================================================================-->
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+	<div class="container" id="cont">
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="custom-file">
+				{{ form.img }}
+				<label class="custom-file-label" for="customFile">Добавить изображени</label>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="category">Категория</label>
+				</div>
+				<div class="col-75">
+					<select id="category" name="category">
+						{% for category in form.category %}
+							{{ category }}
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="city">Город</label>
+				</div>
+				<div class="col-75">
+					<select id="city" name="city">
+						{% for city in form.city %}
+							{{ city }}
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label>Название</label>
+				</div>
+				<div class="col-75">
+					{{ form.ad_title }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label>Описание</label>
+				</div>
+				<div class="col-75">
+					{{ form.ad_text }}
+				</div>
+			</div>
+			<div class="row">
+				<input type="submit" value="Добавить объявление">
+			</div>
+		</form>
+	</div>
+<br>
+{% endblock %}
