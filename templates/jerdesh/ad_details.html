@@ -41,21 +41,22 @@
                 </div>
                 <div class="apply_job_form white-bg">
                     <h4>Оставить комментарий</h4>
-                    <form action="#">
+                    <form action="{% url 'jerdesh:add_comment' ad.pk %}" method="post">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input_field">
-                                    <input type="text" placeholder="Ваше имя">
+                                    <input type="text" placeholder="Ваше имя" name="name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input_field">
-                                    <input type="text" placeholder="Email">
+                                    <input type="text" placeholder="Email" name="email">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="input_field">
-                                    <textarea name="#" id="" cols="30" rows="10" placeholder="Текст комментария"></textarea>
+                                    <textarea name="text" id="" cols="30" rows="10" placeholder="Текст комментария"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -70,7 +71,9 @@
             <div class="col-lg-4">
                 <div class="job_sumary">
                     <div class="summery_header">
-                        <h3>Работа на лето</h3>
+                        {% for com in ad.comment_set.all %}
+                            <h3>{{ com.text }}</h3>
+                        {% endfor %}
                     </div>
                     <div class="job_content">
                         <ul>

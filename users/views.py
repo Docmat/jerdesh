@@ -46,10 +46,10 @@ def userLogout(request):
 
 
 
-class UserProfileDetailView(DispatchFuncMixin, DetailView):
-    template_name = 'users/user_profile.html'
-    model = Profile
+# class UserProfileDetailView(DispatchFuncMixin, DetailView):
+#     template_name = 'users/user_profile.html'
+#     model = Profile
 
-    def dispatch(self, request, *args, **kwargs):
-        user = 'user'
-        return super().dispatch(request, user, *args, **kwargs)
+#     def dispatch(self, request, *args, **kwargs):
+#         user = 'user'
+#         return super().dispatch(request, user, *args, **kwargs)
